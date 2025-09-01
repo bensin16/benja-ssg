@@ -8,7 +8,6 @@ fn test_header_tags_from_file() {
 
     let test_filename = r"tests/md_files/hello";
     let test_md = format!("{}.{}", test_filename, "md");
-    println!("{test_md}");
     let args: Vec<String> = vec!["programname".to_string(), test_md];
     let cfg = SsgConfig::build(&args).unwrap();
     let _res = benja_ssg::run(cfg).unwrap();

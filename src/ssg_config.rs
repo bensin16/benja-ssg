@@ -13,9 +13,6 @@ impl SsgConfig {
         let dst_file = src_file.clone();
         let dst_file = dst_file.replace(".md", ".html");
 
-        println!("{src_file}");
-        println!("{dst_file}");
-
         Ok(SsgConfig { src_file, dst_file })
     }
 }
