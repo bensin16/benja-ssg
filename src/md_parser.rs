@@ -17,8 +17,10 @@ const HTML_TEMPLATE: &str = r#"
 /// # Examples
 ///
 /// ```
+/// use benja_ssg::process_markdown;
+///
 /// let md = r"# Hello";
-/// let html = benja_ssg::process_markdown(md);
+/// let html = process_markdown(md);
 ///
 /// let expected = r#"
 ///<!DOCTYPE html>
