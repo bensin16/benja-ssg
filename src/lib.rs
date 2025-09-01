@@ -1,3 +1,5 @@
-mod bsg_config;
+mod md_parser;
+mod ssg_config;
 
-pub use bsg_config::BsgConfig;
+pub use md_parser::process_markdown;
+pub use ssg_config::SsgConfig;
