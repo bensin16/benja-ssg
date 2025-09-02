@@ -10,6 +10,13 @@ fn main() {
         process::exit(1);
     });
 
+    if config.help {
+        println!("A markdown-to-html renderer");
+        println!("Usage: benja-ssg [-h | --help] [-f | --file <path>] [-d | -dir <path>]");
+
+        return
+    }
+
     if let Err(e) = benja_ssg::run(config) {
         eprintln!("{}", e);
         process::exit(1);

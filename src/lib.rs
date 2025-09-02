@@ -25,13 +25,18 @@ fn write(file_name: &str, contents: &str) -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn run(cfg: SsgConfig) -> Result<(), String> {
-    let contents =
-        read(&cfg.src_file).map_err(|_err| format!("failed to read file {}", cfg.src_file))?;
-
-    let contents = process_markdown(&contents);
-
-    write(&cfg.dst_file, &contents).map_err(|_err| "failed to write file")?;
-
-    Ok(())
+pub fn run(cfg: SsgConfig) -> Result<(), &'static str> {
+    match cfg.src_file {
+        Some(file_path) => {
+            let contents = read(&file_path).map_err(|_err| "Failed to read input file")?;
+            let contents = process_markdown(&contents);
+            if let Some(dst) = &cfg.dst_file {
+                write(&dst, &contents).map_err(|_err| "failed to write output file")?;
+            } else {
+                return Err("No destination file provided");
+            }
+            Ok(())
+        }
+        None => Err("No source file provided"),
+    }
 }
